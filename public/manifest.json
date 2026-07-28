@@ -1,0 +1,13 @@
+{
+  "name": "VERIFIED — Nigeria's Most Trusted Property Marketplace",
+  "short_name": "VERIFIED",
+  "description": "Find verified properties for rent and sale in Nigeria. Every listing verified. Every agent verified.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAFAFA",
+  "theme_color": "#0A7B3E",
+  "icons": [
+    { "src": "/icons/icon-192.svg", "sizes": "192x192", "type": "image/svg+xml" },
+    { "src": "/icons/icon-512.svg", "sizes": "512x512", "type": "image/svg+xml" }
+  ]
+}
