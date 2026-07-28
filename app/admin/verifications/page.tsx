@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Shield, Search, CheckCircle, XCircle, Clock, Eye, FileText } from "lucide-react"
+import { Shield, Search, CheckCircle, XCircle, Clock, FileText } from "lucide-react"
 import { DashboardLayout } from "@/components/dashboard/DashboardLayout"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -30,7 +30,7 @@ export default function AdminVerificationsPage() {
           </div>
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
-            <input className="w-64 rounded-lg border border-gray-300 pl-9 pr-4 py-2 text-sm focus:border-verified-green focus:outline-none" placeholder="Search..." />
+            <input className="w-64 rounded-lg border border-gray-300 pl-9 pr-4 py-2 text-sm focus:border-brand-green focus:outline-none" placeholder="Search..." />
           </div>
         </div>
 
@@ -62,7 +62,7 @@ export default function AdminVerificationsPage() {
 
                     <div className="flex items-center gap-3 mt-3">
                       {ver.documents.map((doc, i) => (
-                        <button key={i} className="flex items-center gap-1.5 text-xs text-gray-500 hover:text-verified-green bg-gray-50 rounded-lg px-2.5 py-1.5">
+                        <button key={i} className="flex items-center gap-1.5 text-xs text-gray-500 hover:text-brand-green bg-gray-50 rounded-lg px-2.5 py-1.5">
                           <FileText className="h-3.5 w-3.5" />
                           {doc}
                         </button>

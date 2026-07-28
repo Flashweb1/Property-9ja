@@ -27,8 +27,8 @@ interface AppState {
 }
 
 export const useAppStore = create<AppState>((set, get) => ({
-  isAuthenticated: true,
-  userRole: "renter",
+  isAuthenticated: false,
+  userRole: null,
   setAuth: (auth, role) => set({ isAuthenticated: auth, userRole: role || null }),
 
   searchQuery: "",
@@ -37,7 +37,7 @@ export const useAppStore = create<AppState>((set, get) => ({
   setFilters: (filters) => set({ filters: { ...get().filters, ...filters } }),
   resetFilters: () => set({ filters: {} }),
 
-  favorites: ["prop-1", "prop-3"],
+  favorites: [],
   toggleFavorite: (propertyId) => {
     const current = get().favorites
     if (current.includes(propertyId)) {

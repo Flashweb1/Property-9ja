@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { Phone, Mail, Clock, Calendar, Building, Star, MapPin, Shield, ChevronLeft, AlertCircle } from "lucide-react"
+import { Phone, Mail, Clock, Calendar, Building, Star, Shield, ChevronLeft, AlertCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { VerificationBadge } from "@/components/shared/VerificationBadge"
 import { TrustScore } from "@/components/shared/TrustScore"

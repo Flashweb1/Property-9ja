@@ -76,7 +76,7 @@ export function ScheduleViewing({ propertyTitle, agentName, onClose }: ScheduleV
           {step === "date" && (
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <Calendar className="h-5 w-5 text-verified-green" />
+                <Calendar className="h-5 w-5 text-brand-green" />
                 <h3 className="font-semibold text-gray-900">Select a Date</h3>
               </div>
               <div className="grid grid-cols-2 gap-2">
@@ -89,8 +89,8 @@ export function ScheduleViewing({ propertyTitle, agentName, onClose }: ScheduleV
                       onClick={() => { setSelectedDate(val); setStep("time") }}
                       className={`rounded-lg border p-3 text-left text-sm transition-colors ${
                         selectedDate === val
-                          ? "border-verified-green bg-verified-green/5 text-verified-green"
-                          : "border-gray-200 hover:border-verified-green text-gray-700"
+                          ? "border-brand-green bg-brand-green/5 text-brand-green"
+                          : "border-gray-200 hover:border-brand-green text-gray-700"
                       }`}
                     >
                       {formatted}
@@ -107,7 +107,7 @@ export function ScheduleViewing({ propertyTitle, agentName, onClose }: ScheduleV
                 ← Back to dates
               </button>
               <div className="flex items-center gap-2 mb-4">
-                <Clock className="h-5 w-5 text-verified-green" />
+                <Clock className="h-5 w-5 text-brand-green" />
                 <h3 className="font-semibold text-gray-900">Select a Time — {selectedDate}</h3>
               </div>
               <div className="grid grid-cols-3 gap-2">
@@ -117,8 +117,8 @@ export function ScheduleViewing({ propertyTitle, agentName, onClose }: ScheduleV
                     onClick={() => { setSelectedTime(t); setStep("confirm") }}
                     className={`rounded-lg border py-3 text-sm transition-colors ${
                       selectedTime === t
-                        ? "border-verified-green bg-verified-green/5 text-verified-green"
-                        : "border-gray-200 hover:border-verified-green text-gray-700"
+                        ? "border-brand-green bg-brand-green/5 text-brand-green"
+                        : "border-gray-200 hover:border-brand-green text-gray-700"
                     }`}
                   >
                     {t}
@@ -142,15 +142,15 @@ export function ScheduleViewing({ propertyTitle, agentName, onClose }: ScheduleV
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
-                  <input type="text" className="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:border-verified-green focus:outline-none focus:ring-1 focus:ring-verified-green" />
+                  <input type="text" className="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:border-brand-green focus:outline-none focus:ring-1 focus:ring-brand-green" />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
-                  <input type="tel" className="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:border-verified-green focus:outline-none focus:ring-1 focus:ring-verified-green" />
+                  <input type="tel" className="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:border-brand-green focus:outline-none focus:ring-1 focus:ring-brand-green" />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Message (optional)</label>
-                  <textarea rows={3} className="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:border-verified-green focus:outline-none focus:ring-1 focus:ring-verified-green" placeholder="Anything you'd like the agent to know..." />
+                  <textarea rows={3} className="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:border-brand-green focus:outline-none focus:ring-1 focus:ring-brand-green" placeholder="Anything you'd like the agent to know..." />
                 </div>
 
                 <Button className="w-full h-11" onClick={handleConfirm}>

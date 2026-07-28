@@ -32,7 +32,7 @@ export default function AdminListingsPage() {
           <div className="flex items-center gap-2">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
-              <input className="w-64 rounded-lg border border-gray-300 pl-9 pr-4 py-2 text-sm focus:border-verified-green focus:outline-none" placeholder="Search listings..." />
+              <input className="w-64 rounded-lg border border-gray-300 pl-9 pr-4 py-2 text-sm focus:border-brand-green focus:outline-none" placeholder="Search listings..." />
             </div>
             <Button variant="outline" size="sm"><Filter className="h-4 w-4 mr-1" />Filter</Button>
           </div>

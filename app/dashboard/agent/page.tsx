@@ -5,18 +5,30 @@ import Link from "next/link"
 import { Building, Eye, MessageSquare, TrendingUp, Users, Plus, Star, Clock } from "lucide-react"
 import { DashboardLayout } from "@/components/dashboard/DashboardLayout"
 import { Button } from "@/components/ui/button"
-import { mockProperties, mockAgents } from "@/lib/mockData"
-import { formatPrice, formatNumber } from "@/lib/utils"
+import { getProperties } from "@/lib/api"
+import { Property } from "@/types"
+import { formatPrice } from "@/lib/utils"
+import { useAuth } from "@/hooks/useAuth"
 
 export default function AgentDashboardPage() {
-  const agent = mockAgents[0]
-  const listings = mockProperties.filter((p) => p.agentId === agent.id)
+  const { user } = useAuth()
+  const [listings, setListings] = useState<Property[]>([])
+  const [loading, setLoading] = useState(true)
+  const agentId = user?.id || ""
+
+  useEffect(() => {
+    if (!agentId) return
+    getProperties().then((all) => {
+      setListings(all.filter((p) => p.agentId === agentId))
+      setLoading(false)
+    })
+  }, [agentId])
 
   const stats = [
     { icon: Building, label: "Active Listings", value: listings.length, color: "text-blue-600 bg-blue-100" },
     { icon: Eye, label: "Total Views", value: "1,234", color: "text-green-600 bg-green-100" },
     { icon: MessageSquare, label: "Inquiries", value: "28", color: "text-purple-600 bg-purple-100" },
-    { icon: Star, label: "Trust Score", value: `${agent.trustScore}%`, color: "text-yellow-600 bg-yellow-100" },
+    { icon: Star, label: "Trust Score", value: "92%", color: "text-yellow-600 bg-yellow-100" },
   ]
 
   return (
@@ -25,7 +37,7 @@ export default function AgentDashboardPage() {
         <div className="flex items-center justify-between mb-6">
           <div>
             <h1 className="text-2xl font-bold text-gray-900">Agent Dashboard</h1>
-            <p className="text-gray-500 mt-1">Welcome back, {agent.name}</p>
+            <p className="text-gray-500 mt-1">Welcome back</p>
           </div>
           <Link href="/dashboard/agent/listings/new">
             <Button className="gap-2">
@@ -52,7 +64,7 @@ export default function AgentDashboardPage() {
         <div className="rounded-xl border bg-white">
           <div className="flex items-center justify-between px-6 py-4 border-b">
             <h2 className="font-semibold text-gray-900">Recent Listings</h2>
-            <Link href="/dashboard/agent/listings" className="text-sm text-verified-green hover:underline">View all</Link>
+            <Link href="/dashboard/agent/listings" className="text-sm text-brand-green hover:underline">View all</Link>
           </div>
           <div className="divide-y">
             {listings.map((property) => (
@@ -63,7 +75,7 @@ export default function AgentDashboardPage() {
                   <p className="text-xs text-gray-500">{property.neighborhood}, {property.city}</p>
                 </div>
                 <div className="text-right text-sm">
-                  <p className="font-semibold text-verified-green">{formatPrice(property.price)}</p>
+                  <p className="font-semibold text-brand-green">{formatPrice(property.price)}</p>
                   <p className="text-xs text-gray-500 capitalize">{property.status}</p>
                 </div>
               </div>

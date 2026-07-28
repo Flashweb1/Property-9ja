@@ -32,12 +32,14 @@ export function PropertyGallery({ images, videoUrl }: PropertyGalleryProps) {
               <button
                 onClick={(e) => { e.stopPropagation(); prevImage() }}
                 className="absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/90 hover:bg-white shadow-lg transition-colors"
+                aria-label="Previous image"
               >
                 <ChevronLeft className="h-5 w-5" />
               </button>
               <button
                 onClick={(e) => { e.stopPropagation(); nextImage() }}
                 className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/90 hover:bg-white shadow-lg transition-colors"
+                aria-label="Next image"
               >
                 <ChevronRight className="h-5 w-5" />
               </button>
@@ -53,7 +55,7 @@ export function PropertyGallery({ images, videoUrl }: PropertyGalleryProps) {
           {videoUrl && currentIndex === 0 && (
             <button className="absolute inset-0 flex items-center justify-center bg-black/20 hover:bg-black/30 transition-colors group">
               <div className="h-16 w-16 rounded-full bg-white/90 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                <Play className="h-7 w-7 text-verified-green ml-1" fill="currentColor" />
+                <Play className="h-7 w-7 text-brand-green ml-1" fill="currentColor" />
               </div>
             </button>
           )}
@@ -66,7 +68,7 @@ export function PropertyGallery({ images, videoUrl }: PropertyGalleryProps) {
               key={idx}
               onClick={() => setCurrentIndex(idx)}
               className={`relative flex-shrink-0 h-16 w-20 rounded-lg overflow-hidden border-2 transition-colors ${
-                idx === currentIndex ? "border-verified-green" : "border-transparent hover:border-gray-300"
+                idx === currentIndex ? "border-brand-green" : "border-transparent hover:border-gray-300"
               }`}
             >
               <img src={img} alt={`Thumbnail ${idx + 1}`} className="h-full w-full object-cover" />
@@ -78,7 +80,7 @@ export function PropertyGallery({ images, videoUrl }: PropertyGalleryProps) {
       {/* Lightbox */}
       {lightboxOpen && (
         <div className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center" onClick={() => setLightboxOpen(false)}>
-          <button className="absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white">
+          <button className="absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white" aria-label="Close full view">
             <X className="h-6 w-6" />
           </button>
           <img

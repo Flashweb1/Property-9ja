@@ -1,4 +1,10 @@
+import type { Metadata } from "next"
 import { Search, CheckCircle, Shield, MessageSquare, Calendar, Star } from "lucide-react"
+
+export const metadata: Metadata = {
+  title: "How It Works | Property 9ja",
+  description: "Learn how Property 9ja works — from searching verified properties to moving in with confidence. Nigeria's most trusted property marketplace.",
+}
 
 const renterSteps = [
   { icon: Search, title: "1. Search & Browse", desc: "Use our AI-powered search to find properties by location, budget, or natural language. Filter by trust score, amenities, and more." },
@@ -17,9 +23,9 @@ const agentSteps = [
 export default function HowItWorksPage() {
   return (
     <div className="min-h-[calc(100vh-4rem)]">
-      <section className="bg-verified-navy text-white py-16 md:py-24">
+      <section className="bg-brand-navy text-white py-16 md:py-24">
         <div className="container mx-auto px-4 text-center max-w-3xl">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">How VERIFIED Works</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">How Property 9ja Works</h1>
           <p className="text-xl text-gray-300">Nigeria's first verification-first property marketplace</p>
         </div>
       </section>
@@ -30,8 +36,8 @@ export default function HowItWorksPage() {
           <div className="grid md:grid-cols-2 gap-6">
             {renterSteps.map((s) => (
               <div key={s.title} className="rounded-xl border bg-white p-6">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-verified-green/10 mb-4">
-                  <s.icon className="h-6 w-6 text-verified-green" />
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-green/10 mb-4">
+                  <s.icon className="h-6 w-6 text-brand-green" />
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">{s.title}</h3>
                 <p className="text-gray-600 text-sm">{s.desc}</p>
@@ -47,8 +53,8 @@ export default function HowItWorksPage() {
           <div className="grid md:grid-cols-2 gap-6">
             {agentSteps.map((s) => (
               <div key={s.title} className="rounded-xl border bg-white p-6">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-verified-green/10 mb-4">
-                  <s.icon className="h-6 w-6 text-verified-green" />
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-green/10 mb-4">
+                  <s.icon className="h-6 w-6 text-brand-green" />
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">{s.title}</h3>
                 <p className="text-gray-600 text-sm">{s.desc}</p>

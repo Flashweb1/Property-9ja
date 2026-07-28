@@ -2,10 +2,11 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import { Search, MapPin, SlidersHorizontal } from "lucide-react"
+import { Search, MapPin, SlidersHorizontal, Sparkles, Loader2 } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { useAppStore } from "@/lib/store"
+import { naturalSearch } from "@/lib/api"
 
 interface SearchBarProps {
   variant?: "hero" | "compact"
@@ -17,12 +18,38 @@ export function SearchBar({ variant = "compact", initialQuery = "" }: SearchBarP
   const { setFilterDrawerOpen } = useAppStore()
   const [query, setQuery] = useState(initialQuery)
   const [location, setLocation] = useState("")
+  const [nlpLoading, setNlpLoading] = useState(false)
 
-  const handleSearch = () => {
+  const handleSearch = async () => {
     const params = new URLSearchParams()
     if (query) params.set("q", query)
     if (location) params.set("location", location)
     router.push(`/search?${params.toString()}`)
+  }
+
+  const handleNLSearch = async () => {
+    if (!query.trim() || nlpLoading) return
+    setNlpLoading(true)
+    try {
+      const filters = await naturalSearch(query)
+      if (filters) {
+        const params = new URLSearchParams()
+        if (filters.q) params.set("q", filters.q)
+        if (filters.location) params.set("location", filters.location)
+        if (filters.city) params.set("city", filters.city)
+        if (filters.type) params.set("type", filters.type)
+        if (filters.minPrice) params.set("minPrice", String(filters.minPrice))
+        if (filters.maxPrice) params.set("maxPrice", String(filters.maxPrice))
+        if (filters.bedrooms) params.set("bedrooms", String(filters.bedrooms))
+        if (filters.bathrooms) params.set("bathrooms", String(filters.bathrooms))
+        if (filters.verifiedOnly) params.set("verifiedOnly", "true")
+        router.push(`/search?${params.toString()}`)
+      } else {
+        handleSearch()
+      }
+    } finally {
+      setNlpLoading(false)
+    }
   }
 
   if (variant === "hero") {
@@ -36,7 +63,7 @@ export function SearchBar({ variant = "compact", initialQuery = "" }: SearchBarP
               className="pl-10 h-14 text-base border-0 shadow-none focus-visible:ring-0"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+              onKeyDown={(e) => e.key === "Enter" && handleNLSearch()}
             />
           </div>
           <div className="flex gap-2">
@@ -52,16 +79,21 @@ export function SearchBar({ variant = "compact", initialQuery = "" }: SearchBarP
             <Button
               size="lg"
               className="h-14 px-8 rounded-xl"
-              onClick={handleSearch}
+              onClick={handleNLSearch}
+              disabled={nlpLoading}
             >
-              <Search className="h-5 w-5 mr-2" />
-              Search
+              {nlpLoading ? (
+                <Loader2 className="h-5 w-5 mr-2 animate-spin" />
+              ) : (
+                <Sparkles className="h-5 w-5 mr-2" />
+              )}
+              {nlpLoading ? "Thinking..." : "Search"}
             </Button>
           </div>
         </div>
         <div className="px-4 pb-2 pt-1">
           <p className="text-xs text-gray-400 flex items-center gap-1">
-            <span className="bg-verified-green/10 text-verified-green px-1.5 py-0.5 rounded text-[10px] font-medium">AI</span>
+            <span className="bg-brand-green/10 text-brand-green px-1.5 py-0.5 rounded text-[10px] font-medium">AI</span>
             Try natural language search
           </p>
         </div>

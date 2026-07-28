@@ -4,7 +4,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Heart, MapPin, Bed, Bath, Car } from "lucide-react"
 import { Property } from "@/types"
-import { formatPrice } from "@/lib/utils"
+import { formatPrice, cn } from "@/lib/utils"
 import { VerificationBadge } from "@/components/shared/VerificationBadge"
 import { TrustScore } from "@/components/shared/TrustScore"
 import { useAppStore } from "@/lib/store"
@@ -59,6 +59,7 @@ export function PropertyCard({ property, variant = "default" }: PropertyCardProp
             toggleFavorite(property.id)
           }}
           className="absolute top-3 right-3 p-2 rounded-full bg-white/90 hover:bg-white shadow-sm transition-colors"
+          aria-label={favorited ? "Remove from favorites" : "Add to favorites"}
         >
           <Heart className={cn("h-4 w-4", favorited ? "fill-red-500 text-red-500" : "text-gray-600")} />
         </button>
@@ -112,8 +113,4 @@ export function PropertyCard({ property, variant = "default" }: PropertyCardProp
       </Link>
     </div>
   )
-}
-
-function cn(...inputs: any[]) {
-  return inputs.filter(Boolean).join(" ")
 }

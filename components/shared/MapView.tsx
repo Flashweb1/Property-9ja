@@ -53,17 +53,17 @@ export function MapView({ properties, onMarkerClick }: MapViewProps) {
             }}
           >
             <div className="flex flex-col items-center">
-              <div className="bg-verified-green text-white text-[10px] font-bold px-2 py-0.5 rounded shadow-md whitespace-nowrap group-hover:bg-verified-green-dark transition-colors">
+              <div className="bg-brand-green text-white text-[10px] font-bold px-2 py-0.5 rounded shadow-md whitespace-nowrap group-hover:bg-brand-green-dark transition-colors">
                 {formatPrice(p.price)}
               </div>
-              <MapPin className="h-5 w-5 text-verified-green -mt-0.5" fill="#0A7B3E" />
+              <MapPin className="h-5 w-5 text-brand-green -mt-0.5" fill="#0A7B3E" />
             </div>
           </button>
         ))}
 
         {/* Center dot */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" style={{ display: 'none' }}>
-          <div className="h-3 w-3 rounded-full bg-verified-green/30 border-2 border-verified-green" />
+          <div className="h-3 w-3 rounded-full bg-brand-green/30 border-2 border-brand-green" />
         </div>
       </div>
 

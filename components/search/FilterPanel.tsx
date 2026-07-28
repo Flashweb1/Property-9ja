@@ -61,7 +61,7 @@ export function FilterPanel() {
           <div className="flex items-center justify-between">
             <h3 className="font-semibold text-gray-900">Filters</h3>
             {isActive && (
-              <button onClick={clearFilters} className="text-xs text-verified-green hover:underline">
+              <button onClick={clearFilters} className="text-xs text-brand-green hover:underline">
                 Clear all
               </button>
             )}
@@ -74,7 +74,7 @@ export function FilterPanel() {
                   type="checkbox"
                   checked={localFilters.verifiedOnly !== false}
                   onChange={(e) => updateFilter("verifiedOnly", e.target.checked)}
-                  className="h-4 w-4 rounded border-gray-300 text-verified-green focus:ring-verified-green"
+                  className="h-4 w-4 rounded border-gray-300 text-brand-green focus:ring-brand-green"
                 />
                 <span className="text-sm text-gray-700">Show only verified listings</span>
               </label>
@@ -95,7 +95,7 @@ export function FilterPanel() {
                           updateFilter("types", current.filter((t: string) => t !== type.toLowerCase()))
                         }
                       }}
-                      className="h-4 w-4 rounded border-gray-300 text-verified-green focus:ring-verified-green"
+                      className="h-4 w-4 rounded border-gray-300 text-brand-green focus:ring-brand-green"
                     />
                     <span className="text-sm text-gray-700">{type}</span>
                   </label>
@@ -112,7 +112,7 @@ export function FilterPanel() {
                     placeholder="0"
                     value={localFilters.minPrice || ""}
                     onChange={(e) => updateFilter("minPrice", Number(e.target.value))}
-                    className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-verified-green focus:outline-none focus:ring-1 focus:ring-verified-green"
+                    className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-brand-green focus:outline-none focus:ring-1 focus:ring-brand-green"
                   />
                 </div>
                 <div>
@@ -122,7 +122,7 @@ export function FilterPanel() {
                     placeholder="Any"
                     value={localFilters.maxPrice || ""}
                     onChange={(e) => updateFilter("maxPrice", Number(e.target.value))}
-                    className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-verified-green focus:outline-none focus:ring-1 focus:ring-verified-green"
+                    className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-brand-green focus:outline-none focus:ring-1 focus:ring-brand-green"
                   />
                 </div>
               </div>
@@ -137,8 +137,8 @@ export function FilterPanel() {
                     className={cn(
                       "px-3 py-1.5 rounded-lg text-sm border transition-colors",
                       localFilters.bedrooms === num
-                        ? "bg-verified-green text-white border-verified-green"
-                        : "bg-white text-gray-700 border-gray-200 hover:border-verified-green"
+                        ? "bg-brand-green text-white border-brand-green"
+                        : "bg-white text-gray-700 border-gray-200 hover:border-brand-green"
                     )}
                   >
                     {num} {num === 1 ? "Bed" : "Beds"}
@@ -156,8 +156,8 @@ export function FilterPanel() {
                     className={cn(
                       "px-3 py-1.5 rounded-lg text-sm border transition-colors",
                       localFilters.bathrooms === num
-                        ? "bg-verified-green text-white border-verified-green"
-                        : "bg-white text-gray-700 border-gray-200 hover:border-verified-green"
+                        ? "bg-brand-green text-white border-brand-green"
+                        : "bg-white text-gray-700 border-gray-200 hover:border-brand-green"
                     )}
                   >
                     {num} {num === 1 ? "Bath" : "Baths"}
@@ -181,7 +181,7 @@ export function FilterPanel() {
                           updateFilter("amenities", current.filter((a: string) => a !== amenity))
                         }
                       }}
-                      className="h-4 w-4 rounded border-gray-300 text-verified-green focus:ring-verified-green"
+                      className="h-4 w-4 rounded border-gray-300 text-brand-green focus:ring-brand-green"
                     />
                     <span className="text-sm text-gray-700">{amenity}</span>
                   </label>
@@ -216,7 +216,7 @@ export function FilterPanel() {
                       type="checkbox"
                       checked={localFilters.verifiedOnly !== false}
                       onChange={(e) => updateFilter("verifiedOnly", e.target.checked)}
-                      className="h-4 w-4 rounded border-gray-300 text-verified-green"
+                      className="h-4 w-4 rounded border-gray-300 text-brand-green"
                     />
                     <span className="text-sm text-gray-700">Show only verified listings</span>
                   </label>
@@ -236,7 +236,7 @@ export function FilterPanel() {
                               updateFilter("types", current.filter((t: string) => t !== type.toLowerCase()))
                             }
                           }}
-                          className="h-4 w-4 rounded border-gray-300 text-verified-green"
+                          className="h-4 w-4 rounded border-gray-300 text-brand-green"
                         />
                         <span className="text-sm text-gray-700">{type}</span>
                       </label>

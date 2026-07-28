@@ -25,9 +25,9 @@ export function PriceBreakdownPanel({ pricing, total }: PriceBreakdownProps) {
 
   return (
     <div className="rounded-xl border bg-white overflow-hidden">
-      <div className="bg-verified-green/5 border-b border-verified-green/10 px-5 py-4">
+      <div className="bg-brand-green/5 border-b border-brand-green/10 px-5 py-4">
         <div className="flex items-center gap-2">
-          <Receipt className="h-5 w-5 text-verified-green" />
+          <Receipt className="h-5 w-5 text-brand-green" />
           <h3 className="font-semibold text-gray-900">Total Move-In Cost Breakdown</h3>
         </div>
         <p className="text-xs text-gray-500 mt-1">No hidden fees. No surprises.</p>
@@ -48,10 +48,10 @@ export function PriceBreakdownPanel({ pricing, total }: PriceBreakdownProps) {
           ))}
         </div>
 
-        <div className="mt-4 pt-4 border-t-2 border-dashed border-verified-green/20">
+        <div className="mt-4 pt-4 border-t-2 border-dashed border-brand-green/20">
           <div className="flex items-center justify-between">
             <span className="font-semibold text-gray-900">Total First Payment</span>
-            <span className="text-xl font-bold text-verified-green">{formatPrice(total)}</span>
+            <span className="text-xl font-bold text-brand-green">{formatPrice(total)}</span>
           </div>
         </div>
 

@@ -1,12 +1,15 @@
 "use client"
 
 import Link from "next/link"
-import { Shield, Search, CheckCircle, MapPin, TrendingUp, Users, Building, Star } from "lucide-react"
+import Image from "next/image"
+import { Shield, Search, CheckCircle, Users, Building, Star } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { SearchBar } from "@/components/search/SearchBar"
 import { PropertyCard } from "@/components/property/PropertyCard"
 import { VerificationBadge } from "@/components/shared/VerificationBadge"
-import { mockProperties } from "@/lib/mockData"
+import { useState, useEffect } from "react"
+import { Property } from "@/types"
+import { getFeaturedProperties } from "@/lib/api"
 
 const neighborhoods = [
   { name: "Yaba", city: "Lagos", avgRent: "₦1.2M - ₦2.5M", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=300&fit=crop" },
@@ -31,63 +34,104 @@ const steps = [
 ]
 
 export default function LandingPage() {
+  const [featuredProperties, setFeaturedProperties] = useState<Property[]>([])
+
+  useEffect(() => {
+    getFeaturedProperties().then(setFeaturedProperties)
+  }, [])
   return (
     <div>
       {/* Hero Section */}
-      <section className="relative bg-verified-navy text-white overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }} />
+      <section className="relative overflow-hidden bg-brand-navy">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <Image
+            src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&h=1080&fit=crop"
+            alt=""
+            fill
+            className="object-cover opacity-20"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-brand-navy/85 via-brand-navy/70 to-brand-navy" />
         </div>
 
-        <div className="container mx-auto px-4 py-20 md:py-28 relative">
+        {/* Decorative floating shapes */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-20 left-[15%] h-32 w-32 rounded-full border border-brand-green/10 animate-float" />
+          <div className="absolute bottom-40 right-[20%] h-24 w-24 rounded-full border border-brand-green/5 animate-float-delayed" />
+          <div className="absolute top-60 right-[10%] h-16 w-16 rounded-full bg-brand-green/[0.03] animate-float" style={{ animationDelay: "3s" }} />
+        </div>
+
+        {/* Logo Watermark */}
+        <div className="absolute -right-20 -top-20 pointer-events-none hidden md:block animate-pulse-soft">
+          <Image src="/images/Logo Icon Property9ja.png" alt="" width={400} height={400} className="w-[400px] h-[400px]" />
+        </div>
+
+        <div className="container mx-auto px-4 relative z-10 py-16 md:py-28">
           <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 rounded-full bg-verified-green/20 border border-verified-green/30 px-4 py-1.5 mb-6">
-              <Shield className="h-4 w-4 text-verified-green-light" />
-              <span className="text-sm font-medium text-verified-green-light">Nigeria's First Verification-First Property Platform</span>
+            {/* Badge */}
+            <div className="animate-fade-in-up">
+              <div className="inline-flex items-center gap-2 rounded-full bg-brand-green/15 border border-brand-green/30 px-4 py-1.5 mb-6 animate-glow-pulse">
+                <Image src="/images/Logo Icon Property9ja.png" alt="" width={16} height={16} className="w-4 h-4" />
+                <span className="text-sm font-medium text-brand-green-light">Nigeria's #1 Property Marketplace</span>
+              </div>
             </div>
 
-            <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
-              Find Properties You Can{" "}
-              <span className="text-verified-green-light">Actually Trust</span>
+            {/* Headline */}
+            <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6 text-white animate-fade-in-up animation-delay-150">
+              Find Your Perfect Home in{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-brand-green-light to-green-200 bg-[length:200%_auto] animate-shimmer drop-shadow-lg">
+                Nigeria
+              </span>
             </h1>
 
-            <p className="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
-              Every listing verified. Every agent verified. Zero fake properties. Zero hidden fees. 
-              The most transparent way to rent or buy property in Nigeria.
+            {/* Subtitle */}
+            <p className="text-base md:text-lg text-white/70 mb-8 max-w-2xl mx-auto animate-fade-in-up animation-delay-300">
+              Every listing verified. Every agent verified. Zero fake properties. Zero hidden fees.
             </p>
 
-            <SearchBar variant="hero" />
+            {/* Search Bar */}
+            <div className="animate-fade-in-up animation-delay-450">
+              <SearchBar variant="hero" />
+            </div>
 
-            <div className="mt-8 flex flex-wrap justify-center gap-4 text-sm text-gray-400">
-              <span className="flex items-center gap-1.5">
-                <CheckCircle className="h-4 w-4 text-verified-green-light" />
-                Verified Listings
+            {/* Trust Signals */}
+            <div className="mt-6 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
+              <span className="flex items-center gap-1.5 text-white/60 animate-fade-in-up animation-delay-600">
+                <CheckCircle className="h-4 w-4 text-brand-green-light" /> Verified Listings
               </span>
-              <span className="flex items-center gap-1.5">
-                <CheckCircle className="h-4 w-4 text-verified-green-light" />
-                Transparent Pricing
+              <span className="flex items-center gap-1.5 text-white/60 animate-fade-in-up animation-delay-700">
+                <CheckCircle className="h-4 w-4 text-brand-green-light" /> Transparent Pricing
               </span>
-              <span className="flex items-center gap-1.5">
-                <CheckCircle className="h-4 w-4 text-verified-green-light" />
-                No Fake Agents
+              <span className="flex items-center gap-1.5 text-white/60 animate-fade-in-up animation-delay-800">
+                <CheckCircle className="h-4 w-4 text-brand-green-light" /> No Fake Agents
               </span>
+            </div>
+
+            {/* Quick City Links */}
+            <div className="mt-8 flex items-center justify-center gap-2 flex-wrap animate-fade-in-up animation-delay-900">
+              <span className="text-xs text-white/40 uppercase tracking-wider font-medium mr-1">Popular:</span>
+              {["Lagos", "Abuja", "Port Harcourt", "Ibadan", "Enugu"].map((city) => (
+                <Link key={city} href={`/search?city=${city.toLowerCase()}`}
+                  className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/60 hover:bg-brand-green hover:text-white hover:border-brand-green hover:scale-105 transition-all duration-200">
+                  {city}
+                </Link>
+              ))}
             </div>
           </div>
         </div>
 
         {/* Stats Bar */}
-        <div className="border-t border-white/10">
-          <div className="container mx-auto px-4 py-8">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {stats.map((stat) => (
-                <div key={stat.label} className="text-center">
-                  <div className="flex justify-center mb-2">
-                    <stat.icon className="h-6 w-6 text-verified-green-light" />
+        <div className="relative z-10 border-t border-white/10">
+          <div className="container mx-auto px-4 py-6 md:py-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+              {stats.map((stat, i) => (
+                <div key={stat.label} className="text-center animate-fade-in-up" style={{ animationDelay: `${1000 + i * 150}ms` }}>
+                  <div className="flex justify-center mb-1">
+                    <stat.icon className="h-5 w-5 text-brand-green-light" />
                   </div>
-                  <div className="text-2xl md:text-3xl font-bold">{stat.value}</div>
-                  <div className="text-sm text-gray-400 mt-1">{stat.label}</div>
+                  <div className="text-xl md:text-2xl font-bold text-white">{stat.value}</div>
+                  <div className="text-xs md:text-sm text-white/50 mt-0.5">{stat.label}</div>
                 </div>
               ))}
             </div>
@@ -109,7 +153,7 @@ export default function LandingPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {mockProperties.slice(0, 3).map((property) => (
+            {featuredProperties.slice(0, 6).map((property) => (
               <PropertyCard key={property.id} property={property} />
             ))}
           </div>
@@ -120,15 +164,15 @@ export default function LandingPage() {
       <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <h2 className="text-3xl font-bold text-gray-900">How VERIFIED Works</h2>
+            <h2 className="text-3xl font-bold text-gray-900">How Property 9ja Works</h2>
             <p className="text-gray-500 mt-3">We've reimagined property search from the ground up — with trust at the center.</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {steps.map((step, idx) => (
               <div key={step.title} className="relative text-center">
-                <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-verified-green/10 mb-6">
-                  <step.icon className="h-8 w-8 text-verified-green" />
+                <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-green/10 mb-6">
+                  <step.icon className="h-8 w-8 text-brand-green" />
                 </div>
                 <div className="absolute top-8 left-1/2 w-full hidden md:block">
                   {idx < steps.length - 1 && (
@@ -167,7 +211,7 @@ export default function LandingPage() {
                 <div className="absolute bottom-4 left-4 text-white">
                   <h3 className="text-lg font-semibold">{hood.name}</h3>
                   <p className="text-sm text-gray-300">{hood.city}</p>
-                  <p className="text-xs text-verified-green-light mt-1">{hood.avgRent}</p>
+                  <p className="text-xs text-brand-green-light mt-1">{hood.avgRent}</p>
                 </div>
               </Link>
             ))}
@@ -176,7 +220,7 @@ export default function LandingPage() {
       </section>
 
       {/* Trust Section */}
-      <section className="py-16 md:py-24 bg-verified-navy text-white">
+      <section className="py-16 md:py-24 bg-brand-navy text-white">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
@@ -192,7 +236,7 @@ export default function LandingPage() {
                   "Scammers exploit the lack of a trusted central platform",
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-verified-green-light mt-0.5 flex-shrink-0" />
+                    <CheckCircle className="h-5 w-5 text-brand-green-light mt-0.5 flex-shrink-0" />
                     <p className="text-gray-300">{item}</p>
                   </div>
                 ))}
@@ -207,7 +251,7 @@ export default function LandingPage() {
               </div>
             </div>
             <div className="bg-white/5 rounded-2xl p-8 border border-white/10">
-              <h3 className="text-xl font-semibold mb-6">The VERIFIED Difference</h3>
+              <h3 className="text-xl font-semibold mb-6">The Property 9ja Difference</h3>
               <div className="space-y-4">
                 {[
                   { label: "Physical Property Inspection", us: true, them: false },
@@ -220,8 +264,8 @@ export default function LandingPage() {
                   <div key={item.label} className="flex items-center justify-between py-2 border-b border-white/10 last:border-0">
                     <span className="text-sm text-gray-300">{item.label}</span>
                     <div className="flex gap-8">
-                      <span className={item.us ? "text-verified-green-light font-semibold text-sm" : "text-gray-600 text-sm"}>
-                        {item.us ? "✓" : "✗"} VERIFIED
+                      <span className={item.us ? "text-brand-green-light font-semibold text-sm" : "text-gray-600 text-sm"}>
+                        {item.us ? "✓" : "✗"} Property 9ja
                       </span>
                       <span className={item.them ? "text-gray-400 text-sm" : "text-gray-600 text-sm"}>
                         {item.them ? "✓" : "✗"} Others
@@ -238,17 +282,17 @@ export default function LandingPage() {
       {/* CTA */}
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4">
-          <div className="bg-verified-green rounded-2xl p-8 md:p-16 text-center text-white">
+          <div className="bg-brand-green rounded-2xl p-8 md:p-16 text-center text-white">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Ready to Find Your Next Home?
             </h2>
             <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
-              Join thousands of Nigerians who trust VERIFIED for their property search. 
+              Join thousands of Nigerians who trust Property 9ja for their property search. 
               No scams. No surprises. Just verified properties.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/search">
-                <Button size="lg" variant="secondary" className="bg-white text-verified-green hover:bg-gray-100">
+                <Button size="lg" variant="secondary" className="bg-white text-brand-green hover:bg-gray-100">
                   <Search className="h-5 w-5 mr-2" />
                   Search Properties
                 </Button>

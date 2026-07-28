@@ -10,9 +10,10 @@ import { MessageBubble } from "@/components/messaging/MessageBubble"
 import { ConversationList } from "@/components/messaging/ConversationList"
 import { EmptyState } from "@/components/shared/EmptyState"
 import { useConversations, useMessages } from "@/hooks/useConversations"
-import { mockCurrentUser } from "@/lib/mockData"
+import { useAuth } from "@/hooks/useAuth"
 
 export default function MessagesPage() {
+  const { user } = useAuth()
   const searchParams = useSearchParams()
   const preselectedId = searchParams.get("agent") ? "conv-1" : undefined
 
@@ -23,7 +24,7 @@ export default function MessagesPage() {
   const { messages, loading: msgLoading, sendMessage } = useMessages(activeConvId || "")
 
   const activeConv = conversations.find((c) => c.id === activeConvId)
-  const currentUserId = mockCurrentUser.id
+  const currentUserId = user?.id || ""
 
   const handleSend = async () => {
     if (!newMessage.trim()) return
@@ -37,7 +38,7 @@ export default function MessagesPage() {
       <div className="hidden md:flex md:w-80 lg:w-96 flex-col border-r bg-white">
         <div className="p-4 border-b">
           <h1 className="text-lg font-bold text-gray-900 flex items-center gap-2">
-            <MessageSquare className="h-5 w-5 text-verified-green" />
+            <MessageSquare className="h-5 w-5 text-brand-green" />
             Messages
           </h1>
         </div>
@@ -125,7 +126,7 @@ export default function MessagesPage() {
             <div className="w-full">
               <div className="p-4 border-b">
                 <h1 className="text-lg font-bold text-gray-900 flex items-center gap-2">
-                  <MessageSquare className="h-5 w-5 text-verified-green" />
+                  <MessageSquare className="h-5 w-5 text-brand-green" />
                   Messages
                 </h1>
               </div>

@@ -1,19 +1,8 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Conversation, Message } from "@/types"
-import { getConversations, getMessages, sendMessage } from "@/lib/api"
-
-export function useConversations() {
-  const [conversations, setConversations] = useState<Conversation[]>([])
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    getConversations().then(setConversations).finally(() => setLoading(false))
-  }, [])
-
-  return { conversations, loading }
-}
+import { Message } from "@/types"
+import { getMessages, sendMessage } from "@/lib/api"
 
 export function useMessages(conversationId: string | null) {
   const [messages, setMessages] = useState<Message[]>([])
@@ -30,8 +19,9 @@ export function useMessages(conversationId: string | null) {
 
   const send = async (content: string) => {
     if (!conversationId) return
-    const msg = await sendMessage(conversationId, content)
-    setMessages((prev) => [...prev, msg])
+    const id: string = conversationId
+    const msg = await sendMessage(id, content)
+    if (msg) setMessages((prev) => [...prev, msg])
   }
 
   return { messages, loading, send }

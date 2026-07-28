@@ -10,6 +10,18 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        brand: {
+          green: "#0A7B3E",
+          "green-light": "#10B981",
+          "green-dark": "#065F2E",
+          navy: "#1A2B4A",
+          "navy-light": "#2D4A6F",
+          gold: "#D4AF37",
+          "gold-light": "#F0D878",
+          red: "#DC2626",
+          cream: "#FAFAFA",
+          gray: "#F3F4F6",
+        },
         verified: {
           green: "#0A7B3E",
           "green-light": "#10B981",

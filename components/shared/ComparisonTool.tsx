@@ -24,7 +24,7 @@ export function ComparisonTool({ propertyIds, onRemove, onClose }: ComparisonToo
   if (properties.length === 0) return null
 
   const rows = [
-    { label: "Price", render: (p: Property) => <span className="font-bold text-verified-green">{formatPrice(p.price)}</span> },
+    { label: "Price", render: (p: Property) => <span className="font-bold text-brand-green">{formatPrice(p.price)}</span> },
     { label: "Type", render: (p: Property) => <span className="capitalize">{p.type}</span> },
     { label: "Location", render: (p: Property) => <span>{p.neighborhood}, {p.city}</span> },
     { label: "Bedrooms", render: (p: Property) => <div className="flex items-center justify-center gap-1"><Bed className="h-4 w-4" />{p.bedrooms}</div> },

@@ -43,8 +43,8 @@ export default function AnalyticsPage() {
             <div className="h-48 flex items-end justify-between gap-2">
               {[40, 65, 45, 80, 55, 90, 70, 85, 60, 95, 75, 100].map((h, i) => (
                 <div key={i} className="flex-1 flex flex-col items-center gap-1">
-                  <div className="w-full bg-verified-green/20 rounded-t" style={{ height: `${h}%` }}>
-                    <div className="w-full bg-verified-green rounded-t" style={{ height: `${h * 0.7}%` }} />
+                  <div className="w-full bg-brand-green/20 rounded-t" style={{ height: `${h}%` }}>
+                    <div className="w-full bg-brand-green rounded-t" style={{ height: `${h * 0.7}%` }} />
                   </div>
                   <span className="text-[10px] text-gray-400">W{i + 1}</span>
                 </div>

@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { Shield, CheckCircle, Search, FileCheck, Camera, Users, Building, Star } from "lucide-react"
 
 const steps = [
@@ -10,15 +11,20 @@ const steps = [
 export default function TrustAndSafetyPage() {
   return (
     <div className="min-h-[calc(100vh-4rem)]">
-      <section className="bg-verified-navy text-white py-16 md:py-24">
+      <section className="bg-brand-navy text-white py-16 md:py-24">
         <div className="container mx-auto px-4 text-center max-w-3xl">
           <div className="flex justify-center mb-4">
-            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-verified-green">
-              <Shield className="h-8 w-8 text-white" />
+            <div className="relative h-16 w-16">
+              <Image
+                src="/images/Logo Icon Property9ja.png"
+                alt="Property 9ja"
+                fill
+                className="object-contain"
+              />
             </div>
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Trust & Safety</h1>
-          <p className="text-xl text-gray-300">How VERIFIED eliminates real estate fraud in Nigeria</p>
+          <p className="text-xl text-gray-300">How Property 9ja eliminates real estate fraud in Nigeria</p>
         </div>
       </section>
 
@@ -27,8 +33,8 @@ export default function TrustAndSafetyPage() {
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {steps.map((s, i) => (
               <div key={i} className="rounded-xl border bg-white p-6">
-                <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-verified-green/10 mb-4">
-                  <s.icon className="h-7 w-7 text-verified-green" />
+                <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-brand-green/10 mb-4">
+                  <s.icon className="h-7 w-7 text-brand-green" />
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">{s.title}</h3>
                 <p className="text-gray-600 text-sm leading-relaxed">{s.desc}</p>
@@ -40,7 +46,7 @@ export default function TrustAndSafetyPage() {
 
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4 max-w-3xl">
-          <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">The VERIFIED Trust Score</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">The Property 9ja Trust Score</h2>
           <div className="space-y-6">
             {[
               { score: "90-100", label: "Excellent", color: "text-green-600", desc: "Fully verified agent and property. High review scores. No complaints." },
@@ -73,7 +79,7 @@ export default function TrustAndSafetyPage() {
               "We maintain a 24/7 trust and safety team to investigate reports",
             ].map((item, i) => (
               <div key={i} className="flex items-start gap-3">
-                <CheckCircle className="h-5 w-5 text-verified-green mt-0.5 flex-shrink-0" />
+                <CheckCircle className="h-5 w-5 text-brand-green mt-0.5 flex-shrink-0" />
                 <p className="text-gray-600">{item}</p>
               </div>
             ))}

@@ -10,26 +10,26 @@ import { CookieConsent } from "@/components/shared/CookieConsent"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "VERIFIED — Nigeria's Most Trusted Property Marketplace",
+  title: "Property 9ja — Nigeria's #1 Property Marketplace",
   description: "Find verified properties for rent and sale in Nigeria. Every listing verified. Every agent verified. Zero tolerance for fraud.",
   keywords: ["Nigeria property", "rent in Lagos", "verified agents", "property marketplace Nigeria", "real estate Nigeria", "Abuja apartments", "Lekki houses"],
-  authors: [{ name: "VERIFIED" }],
+  authors: [{ name: "Property 9ja" }],
   openGraph: {
-    title: "VERIFIED — Nigeria's Most Trusted Property Marketplace",
-    description: "Every listing verified. Every agent verified. Zero fake properties.",
+    title: "Property 9ja — Nigeria's #1 Property Marketplace",
+    description: "Every listing verified. Every agent verified. Zero fake properties. Zero hidden fees.",
     type: "website",
     locale: "en_NG",
-    siteName: "VERIFIED",
+    siteName: "Property 9ja",
   },
   twitter: {
     card: "summary_large_image",
-    title: "VERIFIED — Nigeria's Most Trusted Property Marketplace",
-    description: "Every listing verified. Every agent verified. Zero fake properties.",
+    title: "Property 9ja — Nigeria's #1 Property Marketplace",
+    description: "Every listing verified. Every agent verified. Zero fake properties. Zero hidden fees.",
   },
   manifest: "/manifest.json",
   icons: {
     icon: "/favicon.svg",
-    apple: "/icons/icon-192.png",
+    apple: "/icons/icon-192.svg",
   },
 }
 
@@ -42,7 +42,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ToastProvider>
-          <div className="min-h-screen flex flex-col bg-verified-cream">
+          <div className="min-h-screen flex flex-col bg-brand-cream">
             <Navbar />
             <main className="flex-1">{children}</main>
             <Footer />

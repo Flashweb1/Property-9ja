@@ -5,9 +5,10 @@ import { User, Mail, Phone, Shield, Bell, Lock, Camera } from "lucide-react"
 import { DashboardLayout } from "@/components/dashboard/DashboardLayout"
 import { Button } from "@/components/ui/button"
 import { Avatar } from "@/components/shared/Avatar"
-import { mockCurrentUser } from "@/lib/mockData"
+import { useAuth } from "@/hooks/useAuth"
 
 export default function SettingsPage() {
+  const { user } = useAuth()
   const [saving, setSaving] = useState(false)
   const [saved, setSaved] = useState(false)
 
@@ -34,14 +35,14 @@ export default function SettingsPage() {
             <h2 className="text-lg font-semibold text-gray-900 mb-4">Profile</h2>
             <div className="flex items-center gap-4 mb-6">
               <div className="relative">
-                <Avatar src={mockCurrentUser.avatar} alt={mockCurrentUser.name} size="xl" />
-                <button className="absolute -bottom-1 -right-1 h-7 w-7 rounded-full bg-verified-green text-white flex items-center justify-center shadow-sm hover:bg-verified-green-dark transition-colors">
+                <Avatar src={user?.avatar || ""} alt={user?.name || "User"} size="xl" />
+                <button className="absolute -bottom-1 -right-1 h-7 w-7 rounded-full bg-brand-green text-white flex items-center justify-center shadow-sm hover:bg-brand-green-dark transition-colors">
                   <Camera className="h-3.5 w-3.5" />
                 </button>
               </div>
               <div>
-                <p className="font-semibold text-gray-900">{mockCurrentUser.name}</p>
-                <p className="text-sm text-gray-500 capitalize">{mockCurrentUser.role}</p>
+                <p className="font-semibold text-gray-900">{user?.name || "User"}</p>
+                <p className="text-sm text-gray-500 capitalize">{user?.role || "renter"}</p>
               </div>
             </div>
 
@@ -52,8 +53,8 @@ export default function SettingsPage() {
                   <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
                   <input
                     type="text"
-                    defaultValue={mockCurrentUser.name}
-                    className="w-full rounded-lg border border-gray-300 pl-10 pr-4 py-2.5 text-sm focus:border-verified-green focus:outline-none focus:ring-1 focus:ring-verified-green"
+                    defaultValue={user?.name || ""}
+                    className="w-full rounded-lg border border-gray-300 pl-10 pr-4 py-2.5 text-sm focus:border-brand-green focus:outline-none focus:ring-1 focus:ring-brand-green"
                   />
                 </div>
               </div>
@@ -63,8 +64,8 @@ export default function SettingsPage() {
                   <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
                   <input
                     type="email"
-                    defaultValue={mockCurrentUser.email}
-                    className="w-full rounded-lg border border-gray-300 pl-10 pr-4 py-2.5 text-sm focus:border-verified-green focus:outline-none focus:ring-1 focus:ring-verified-green"
+                    defaultValue={user?.email || ""}
+                    className="w-full rounded-lg border border-gray-300 pl-10 pr-4 py-2.5 text-sm focus:border-brand-green focus:outline-none focus:ring-1 focus:ring-brand-green"
                   />
                 </div>
               </div>
@@ -74,8 +75,8 @@ export default function SettingsPage() {
                   <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
                   <input
                     type="tel"
-                    defaultValue={mockCurrentUser.phone}
-                    className="w-full rounded-lg border border-gray-300 pl-10 pr-4 py-2.5 text-sm focus:border-verified-green focus:outline-none focus:ring-1 focus:ring-verified-green"
+                    defaultValue={user?.phone || ""}
+                    className="w-full rounded-lg border border-gray-300 pl-10 pr-4 py-2.5 text-sm focus:border-brand-green focus:outline-none focus:ring-1 focus:ring-brand-green"
                   />
                 </div>
               </div>
@@ -97,7 +98,7 @@ export default function SettingsPage() {
                   <input
                     type="checkbox"
                     defaultChecked={item.default}
-                    className="h-4 w-4 rounded border-gray-300 text-verified-green focus:ring-verified-green"
+                    className="h-4 w-4 rounded border-gray-300 text-brand-green focus:ring-brand-green"
                   />
                 </label>
               ))}
@@ -112,21 +113,21 @@ export default function SettingsPage() {
                 <label className="block text-sm font-medium text-gray-700 mb-1">Current Password</label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
-                  <input type="password" className="w-full rounded-lg border border-gray-300 pl-10 pr-4 py-2.5 text-sm focus:border-verified-green focus:outline-none focus:ring-1 focus:ring-verified-green" />
+                  <input type="password" className="w-full rounded-lg border border-gray-300 pl-10 pr-4 py-2.5 text-sm focus:border-brand-green focus:outline-none focus:ring-1 focus:ring-brand-green" />
                 </div>
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">New Password</label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
-                  <input type="password" className="w-full rounded-lg border border-gray-300 pl-10 pr-4 py-2.5 text-sm focus:border-verified-green focus:outline-none focus:ring-1 focus:ring-verified-green" />
+                  <input type="password" className="w-full rounded-lg border border-gray-300 pl-10 pr-4 py-2.5 text-sm focus:border-brand-green focus:outline-none focus:ring-1 focus:ring-brand-green" />
                 </div>
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Confirm New Password</label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
-                  <input type="password" className="w-full rounded-lg border border-gray-300 pl-10 pr-4 py-2.5 text-sm focus:border-verified-green focus:outline-none focus:ring-1 focus:ring-verified-green" />
+                  <input type="password" className="w-full rounded-lg border border-gray-300 pl-10 pr-4 py-2.5 text-sm focus:border-brand-green focus:outline-none focus:ring-1 focus:ring-brand-green" />
                 </div>
               </div>
             </div>
@@ -150,7 +151,7 @@ export default function SettingsPage() {
             <Button onClick={handleSave} disabled={saving}>
               {saving ? "Saving..." : "Save Changes"}
             </Button>
-            {saved && <span className="text-sm text-verified-green font-medium">Changes saved successfully</span>}
+            {saved && <span className="text-sm text-brand-green font-medium">Changes saved successfully</span>}
           </div>
         </div>
       </div>

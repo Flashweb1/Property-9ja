@@ -53,8 +53,8 @@ export default function SavedSearchesPage() {
                 <div key={search.id} className="rounded-xl border bg-white p-5 hover:shadow-sm transition-shadow">
                   <div className="flex items-start justify-between">
                     <div className="flex items-start gap-3">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-verified-green/10">
-                        <Search className="h-5 w-5 text-verified-green" />
+                      <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-green/10">
+                        <Search className="h-5 w-5 text-brand-green" />
                       </div>
                       <div>
                         <h3 className="font-semibold text-gray-900">{search.name}</h3>
@@ -72,7 +72,7 @@ export default function SavedSearchesPage() {
                           </span>
                           <span className="flex items-center gap-1">
                             {search.alertFrequency === "instant" ? (
-                              <Bell className="h-3 w-3 text-verified-green" />
+                              <Bell className="h-3 w-3 text-brand-green" />
                             ) : (
                               <BellOff className="h-3 w-3 text-gray-400" />
                             )}

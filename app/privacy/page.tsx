@@ -1,7 +1,14 @@
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Privacy Policy | Property 9ja",
+  description: "How Property 9ja collects, uses, and protects your personal data.",
+}
+
 export default function PrivacyPage() {
   return (
     <div className="min-h-[calc(100vh-4rem)]">
-      <section className="bg-verified-navy text-white py-16 md:py-20">
+      <section className="bg-brand-navy text-white py-16 md:py-20">
         <div className="container mx-auto px-4 text-center max-w-3xl">
           <h1 className="text-4xl font-bold mb-4">Privacy Policy</h1>
           <p className="text-lg text-gray-300">Last updated: June 2024</p>

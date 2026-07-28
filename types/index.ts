@@ -138,3 +138,19 @@ export interface VerificationItem {
   notes?: string
   documents: string[]
 }
+
+export interface BlogPost {
+  id: string
+  title: string
+  excerpt: string
+  content: string
+  date: string
+  readTime: string
+  image: string
+  slug: string
+  author: string
+  tags: string[]
+  category: string
+  published: boolean
+  createdAt: string
+}

@@ -1,16 +1,25 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Building, Plus, Edit3, Trash2, Eye, Copy } from "lucide-react"
 import { DashboardLayout } from "@/components/dashboard/DashboardLayout"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { mockProperties, mockAgents } from "@/lib/mockData"
+import { getProperties } from "@/lib/api"
+import { Property } from "@/types"
 import { formatPrice } from "@/lib/utils"
+import { useAuth } from "@/hooks/useAuth"
 
 export default function AgentListingsPage() {
-  const agent = mockAgents[0]
-  const listings = mockProperties.filter((p) => p.agentId === agent.id)
+  const { user } = useAuth()
+  const [listings, setListings] = useState<Property[]>([])
+  const agentId = user?.id || ""
+
+  useEffect(() => {
+    if (!agentId) return
+    getProperties().then((all) => setListings(all.filter((p) => p.agentId === agentId)))
+  }, [agentId])
 
   return (
     <DashboardLayout>
@@ -47,7 +56,7 @@ export default function AgentListingsPage() {
                       <div className="flex items-center gap-3">
                         <img src={property.images[0]} alt={property.title} className="h-12 w-16 rounded-lg object-cover flex-shrink-0" />
                         <div className="min-w-0">
-                          <Link href={`/property/${property.id}`} className="text-sm font-semibold text-gray-900 hover:text-verified-green truncate block">
+                          <Link href={`/property/${property.id}`} className="text-sm font-semibold text-gray-900 hover:text-brand-green truncate block">
                             {property.title}
                           </Link>
                           <p className="text-xs text-gray-500">{property.neighborhood}, {property.city}</p>

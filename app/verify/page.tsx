@@ -1,6 +1,7 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import Image from "next/image"
 import { Shield, Upload, CheckCircle, AlertCircle, FileText, Camera, Building, User } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -16,12 +17,22 @@ export default function VerifyPage() {
   const [submitting, setSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
 
-  const handleSubmit = () => {
+  useEffect(() => { document.title = "Get Verified | Property 9ja" }, [])
+
+  const handleSubmit = async () => {
+    if (!selectedType) return
     setSubmitting(true)
-    setTimeout(() => {
-      setSubmitting(false)
-      setSubmitted(true)
-    }, 2000)
+    try {
+      const res = await fetch("/api/verifications", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ requestType: selectedType, notes: "" }),
+      })
+      if (res.ok) setSubmitted(true)
+    } catch {
+      // submission failed silently
+    }
+    setSubmitting(false)
   }
 
   if (submitted) {
@@ -63,12 +74,17 @@ export default function VerifyPage() {
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-8">
           <div className="flex justify-center mb-4">
-            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-verified-green">
-              <Shield className="h-8 w-8 text-white" />
+            <div className="relative h-16 w-16">
+              <Image
+                src="/images/Logo Icon Property9ja.png"
+                alt="Property 9ja"
+                fill
+                className="object-contain"
+              />
             </div>
           </div>
           <h1 className="text-3xl font-bold text-gray-900">Get Verified</h1>
-          <p className="text-gray-500 mt-2">Build trust with tenants and landlords through VERIFIED&apos;s verification system</p>
+          <p className="text-gray-500 mt-2">Build trust with tenants and landlords through Property 9ja&apos;s verification system</p>
         </div>
 
         {!selectedType ? (
@@ -77,11 +93,11 @@ export default function VerifyPage() {
               <button
                 key={vt.id}
                 onClick={() => setSelectedType(vt.id)}
-                className="group text-left rounded-xl border bg-white p-6 hover:border-verified-green hover:shadow-sm transition-all"
+                className="group text-left rounded-xl border bg-white p-6 hover:border-brand-green hover:shadow-sm transition-all"
               >
                 <div className="flex items-start gap-4">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-verified-green/10 group-hover:bg-verified-green/20 transition-colors">
-                    <vt.icon className="h-7 w-7 text-verified-green" />
+                  <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-brand-green/10 group-hover:bg-brand-green/20 transition-colors">
+                    <vt.icon className="h-7 w-7 text-brand-green" />
                   </div>
                   <div className="flex-1">
                     <h3 className="text-lg font-semibold text-gray-900">{vt.label}</h3>
@@ -92,8 +108,8 @@ export default function VerifyPage() {
                     </div>
                   </div>
                   <div className="flex-shrink-0 self-center">
-                    <div className="h-8 w-8 rounded-full border-2 border-gray-200 group-hover:border-verified-green flex items-center justify-center transition-colors">
-                      <div className="h-3 w-3 rounded-full bg-verified-green opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="h-8 w-8 rounded-full border-2 border-gray-200 group-hover:border-brand-green flex items-center justify-center transition-colors">
+                      <div className="h-3 w-3 rounded-full bg-brand-green opacity-0 group-hover:opacity-100 transition-opacity" />
                     </div>
                   </div>
                 </div>
@@ -113,7 +129,7 @@ export default function VerifyPage() {
               <div className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Upload Document</label>
-                  <div className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:border-verified-green transition-colors cursor-pointer">
+                  <div className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:border-brand-green transition-colors cursor-pointer">
                     <Upload className="h-10 w-10 text-gray-400 mx-auto mb-3" />
                     <p className="text-sm font-medium text-gray-700">Click to upload or drag and drop</p>
                     <p className="text-xs text-gray-500 mt-1">PDF, JPG, or PNG (max 10MB)</p>
@@ -122,7 +138,7 @@ export default function VerifyPage() {
 
                 <div className="grid grid-cols-2 gap-3">
                   {["NIN Front", "NIN Back", "Selfie", "Signature"].map((doc) => (
-                    <div key={doc} className="rounded-lg border border-dashed border-gray-300 p-4 text-center hover:border-verified-green transition-colors cursor-pointer">
+                    <div key={doc} className="rounded-lg border border-dashed border-gray-300 p-4 text-center hover:border-brand-green transition-colors cursor-pointer">
                       <Camera className="h-6 w-6 text-gray-400 mx-auto mb-2" />
                       <p className="text-xs font-medium text-gray-700">{doc}</p>
                     </div>
@@ -131,7 +147,7 @@ export default function VerifyPage() {
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Additional Notes (optional)</label>
-                  <textarea rows={3} className="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:border-verified-green focus:outline-none focus:ring-1 focus:ring-verified-green" placeholder="Any additional information for the verification team..." />
+                  <textarea rows={3} className="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:border-brand-green focus:outline-none focus:ring-1 focus:ring-brand-green" placeholder="Any additional information for the verification team..." />
                 </div>
 
                 <div className="bg-blue-50 border border-blue-200 rounded-xl p-4">

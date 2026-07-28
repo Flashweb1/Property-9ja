@@ -42,15 +42,15 @@ export default function LeadsPage() {
                   </div>
                   <p className="text-sm text-gray-600 mt-2 bg-gray-50 rounded-lg p-3">&ldquo;{lead.message}&rdquo;</p>
                   <div className="flex items-center gap-4 mt-3">
-                    <button className="flex items-center gap-1.5 text-xs text-gray-500 hover:text-verified-green">
+                    <button className="flex items-center gap-1.5 text-xs text-gray-500 hover:text-brand-green">
                       <Mail className="h-3.5 w-3.5" />
                       {lead.email}
                     </button>
-                    <button className="flex items-center gap-1.5 text-xs text-gray-500 hover:text-verified-green">
+                    <button className="flex items-center gap-1.5 text-xs text-gray-500 hover:text-brand-green">
                       <Phone className="h-3.5 w-3.5" />
                       {lead.phone}
                     </button>
-                    <button className="flex items-center gap-1.5 text-xs text-verified-green font-medium hover:underline">
+                    <button className="flex items-center gap-1.5 text-xs text-brand-green font-medium hover:underline">
                       <MessageSquare className="h-3.5 w-3.5" />
                       Send Message
                     </button>

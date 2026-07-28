@@ -1,4 +1,4 @@
-import { Property, Agent, Conversation, SavedSearch, VerificationItem, User } from "@/types"
+import { Property, Agent, Conversation, SavedSearch, VerificationItem } from "@/types"
 
 export const mockAgents: Agent[] = [
   {
@@ -416,23 +416,3 @@ export const mockVerifications: VerificationItem[] = [
     documents: ["cac-cert.pdf", "tax-id.pdf"],
   },
 ]
-
-export const mockCurrentUser: User = {
-  id: "user-1",
-  name: "David Emmanuel",
-  email: "david@email.com",
-  phone: "+234 801 234 5678",
-  avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face",
-  role: "renter",
-  verificationStatus: "identity-verified",
-  trustScore: 85,
-}
-
-export const mockAdminStats = {
-  totalUsers: 12543,
-  totalListings: 8762,
-  pendingVerifications: 234,
-  totalRevenue: 45600000,
-  fraudReports: 12,
-  activeConversations: 1892,
-}

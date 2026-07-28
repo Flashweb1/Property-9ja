@@ -1,5 +1,6 @@
 import Link from "next/link"
-import { Shield, Home } from "lucide-react"
+import Image from "next/image"
+import { Home } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default function NotFound() {
@@ -7,8 +8,13 @@ export default function NotFound() {
     <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center px-4">
       <div className="text-center max-w-md">
         <div className="flex justify-center mb-6">
-          <div className="flex h-24 w-24 items-center justify-center rounded-2xl bg-verified-green/10">
-            <Shield className="h-12 w-12 text-verified-green" />
+          <div className="relative h-24 w-24 mx-auto">
+            <Image
+              src="/images/Logo Icon Property9ja.png"
+              alt="Property 9ja"
+              fill
+              className="object-contain"
+            />
           </div>
         </div>
         <h1 className="text-6xl font-bold text-gray-900 mb-2">404</h1>

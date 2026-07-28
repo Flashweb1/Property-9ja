@@ -65,14 +65,14 @@ export function DashboardSidebar() {
                 className={cn(
                   "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
                   active
-                    ? "bg-verified-green/10 text-verified-green"
+                    ? "bg-brand-green/10 text-brand-green"
                     : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
                 )}
               >
                 <link.icon className="h-5 w-5 flex-shrink-0" />
                 <span>{link.label}</span>
                 {link.badge !== undefined && link.badge > 0 && (
-                  <span className="ml-auto bg-verified-green text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">
+                  <span className="ml-auto bg-brand-green text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">
                     {link.badge}
                   </span>
                 )}

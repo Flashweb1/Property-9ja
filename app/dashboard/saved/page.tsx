@@ -1,15 +1,23 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import { Heart, MapPin } from "lucide-react"
 import { DashboardLayout } from "@/components/dashboard/DashboardLayout"
 import { PropertyCard } from "@/components/property/PropertyCard"
 import { EmptyState } from "@/components/shared/EmptyState"
 import { useAppStore } from "@/lib/store"
-import { mockProperties } from "@/lib/mockData"
+import { getProperties } from "@/lib/api"
+import { Property } from "@/types"
 
 export default function SavedPropertiesPage() {
   const { favorites } = useAppStore()
-  const saved = mockProperties.filter((p) => favorites.includes(p.id))
+  const [saved, setSaved] = useState<Property[]>([])
+
+  useEffect(() => {
+    if (favorites.length > 0) {
+      getProperties().then((all) => setSaved(all.filter((p) => favorites.includes(p.id))))
+    }
+  }, [favorites])
 
   return (
     <DashboardLayout>

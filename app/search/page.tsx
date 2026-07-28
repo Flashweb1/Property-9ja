@@ -16,6 +16,11 @@ import { useProperties } from "@/hooks/useProperties"
 import { useAppStore } from "@/lib/store"
 import { Property } from "@/types"
 
+function SearchBarWithQuery() {
+  const searchParams = useSearchParams()
+  return <SearchBar initialQuery={searchParams.get("q") || ""} />
+}
+
 function SearchContent() {
   const searchParams = useSearchParams()
   const initialQuery = searchParams.get("q") || ""
@@ -75,7 +80,7 @@ function SearchContent() {
               {compareIds.length > 0 && (
                 <button
                   onClick={() => setShowCompare(true)}
-                  className="flex items-center gap-1.5 text-xs bg-verified-green text-white px-3 py-1.5 rounded-full font-medium hover:bg-verified-green-dark"
+                  className="flex items-center gap-1.5 text-xs bg-brand-green text-white px-3 py-1.5 rounded-full font-medium hover:bg-brand-green-dark"
                 >
                   <Columns3 className="h-3.5 w-3.5" />
                   Compare ({compareIds.length})
@@ -88,7 +93,7 @@ function SearchContent() {
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="appearance-none rounded-lg border border-gray-300 bg-white pl-3 pr-8 py-2 text-sm text-gray-700 focus:border-verified-green focus:outline-none focus:ring-1 focus:ring-verified-green"
+                  className="appearance-none rounded-lg border border-gray-300 bg-white pl-3 pr-8 py-2 text-sm text-gray-700 focus:border-brand-green focus:outline-none focus:ring-1 focus:ring-brand-green"
                 >
                   <option value="newest">Newest First</option>
                   <option value="price-asc">Price: Low to High</option>
@@ -101,13 +106,13 @@ function SearchContent() {
               <div className="hidden sm:flex items-center rounded-lg border border-gray-300 overflow-hidden">
                 <button
                   onClick={() => setViewMode("grid")}
-                  className={`p-2 ${viewMode === "grid" ? "bg-verified-green text-white" : "text-gray-500 hover:bg-gray-100"}`}
+                  className={`p-2 ${viewMode === "grid" ? "bg-brand-green text-white" : "text-gray-500 hover:bg-gray-100"}`}
                 >
                   <Grid3X3 className="h-4 w-4" />
                 </button>
                 <button
                   onClick={() => setViewMode("list")}
-                  className={`p-2 ${viewMode === "list" ? "bg-verified-green text-white" : "text-gray-500 hover:bg-gray-100"}`}
+                  className={`p-2 ${viewMode === "list" ? "bg-brand-green text-white" : "text-gray-500 hover:bg-gray-100"}`}
                 >
                   <List className="h-4 w-4" />
                 </button>
@@ -150,8 +155,8 @@ function SearchContent() {
                     onClick={() => toggleCompare(property.id)}
                     className={`absolute top-3 right-3 z-10 h-6 w-6 rounded-full border-2 flex items-center justify-center text-[10px] font-bold transition-colors ${
                       compareIds.includes(property.id)
-                        ? "bg-verified-green border-verified-green text-white"
-                        : "bg-white border-gray-300 text-gray-400 opacity-0 group-hover:opacity-100 hover:border-verified-green"
+                        ? "bg-brand-green border-brand-green text-white"
+                        : "bg-white border-gray-300 text-gray-400 opacity-0 group-hover:opacity-100 hover:border-brand-green"
                     }`}
                     title="Compare"
                   >
@@ -180,7 +185,9 @@ export default function SearchPage() {
     <div className="min-h-[calc(100vh-4rem)]">
       <div className="bg-white border-b sticky top-16 z-30">
         <div className="container mx-auto px-4 py-3">
-          <SearchBar initialQuery="" />
+          <Suspense fallback={<SearchBar initialQuery="" />}>
+            <SearchBarWithQuery />
+          </Suspense>
         </div>
       </div>
       <Suspense fallback={
