@@ -3,6 +3,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Shield, Users, Building, Award } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { PageHero } from "@/components/shared/PageHero"
 
 export const metadata: Metadata = {
   title: "About Us | Property 9ja",
@@ -19,22 +20,11 @@ const values = [
 export default function AboutPage() {
   return (
     <div className="min-h-[calc(100vh-4rem)]">
-      <section className="bg-brand-navy text-white py-16 md:py-24">
-        <div className="container mx-auto px-4 text-center max-w-3xl">
-          <div className="flex justify-center mb-4">
-            <div className="relative h-16 w-16">
-              <Image
-                src="/images/Logo Icon Property9ja.png"
-                alt="Property 9ja"
-                fill
-                className="object-contain"
-              />
-            </div>
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">About Property 9ja</h1>
-          <p className="text-xl text-gray-300">Nigeria&apos;s most trusted property marketplace</p>
-        </div>
-      </section>
+      <PageHero
+        icon={<div className="relative h-16 w-16"><Image src="/images/Logo Icon Property9ja.png" alt="Property 9ja" fill className="object-contain" /></div>}
+        title="About Property 9ja"
+        subtitle="Nigeria's most trusted property marketplace"
+      />
 
       <section className="py-16">
         <div className="container mx-auto px-4 max-w-4xl">

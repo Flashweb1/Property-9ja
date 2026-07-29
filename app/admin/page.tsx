@@ -16,10 +16,10 @@ export default function AdminDashboardPage() {
   }, [])
 
   const cards = [
-    { icon: Building, label: "Properties", value: stats.totalProperties, href: "/admin/listings", color: "text-blue-600 bg-blue-100" },
-    { icon: Users, label: "Users", value: stats.totalUsers, href: "/admin/users", color: "text-green-600 bg-green-100" },
-    { icon: Shield, label: "Pending Verifications", value: stats.pendingVerifications, href: "/admin/verifications", color: "text-yellow-600 bg-yellow-100" },
-    { icon: TrendingUp, label: "Total Views", value: stats.totalViews, href: "#", color: "text-purple-600 bg-purple-100" },
+    { icon: Building, label: "Properties", value: stats.totalProperties, href: "/admin/listings", color: "text-brand-navy bg-brand-navy/10" },
+    { icon: Users, label: "Users", value: stats.totalUsers, href: "/admin/users", color: "text-brand-green bg-brand-green/10" },
+    { icon: Shield, label: "Pending Verifications", value: stats.pendingVerifications, href: "/admin/verifications", color: "text-brand-gold bg-brand-gold/10" },
+    { icon: TrendingUp, label: "Total Views", value: stats.totalViews, href: "#", color: "text-brand-green-light bg-brand-green-light/10" },
   ]
 
   return (
@@ -58,7 +58,7 @@ export default function AdminDashboardPage() {
             <div className="divide-y">
               {pendingList.map((v: any) => (
                 <div key={v.id} className="flex items-center gap-3 px-6 py-3">
-                  <AlertTriangle className="h-4 w-4 text-yellow-500" />
+                  <AlertTriangle className="h-4 w-4 text-brand-gold" />
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium text-gray-900 truncate capitalize">{v.type} Verification</p>
                     <p className="text-xs text-gray-500">Submitted {new Date(v.submittedAt).toLocaleDateString()}</p>

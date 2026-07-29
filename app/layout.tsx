@@ -28,7 +28,10 @@ export const metadata: Metadata = {
   },
   manifest: "/manifest.json",
   icons: {
-    icon: "/favicon.svg",
+    icon: [
+      { url: "/icon.png", type: "image/png", sizes: "192x192" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
     apple: "/icons/icon-192.svg",
   },
 }
@@ -40,11 +43,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <meta name="theme-color" content="#1A2B4A" />
+      </head>
       <body className={inter.className}>
         <ToastProvider>
           <div className="min-h-screen flex flex-col bg-brand-cream">
             <Navbar />
-            <main className="flex-1">{children}</main>
+            <main className="flex-1 animate-fade-in">{children}</main>
             <Footer />
           </div>
           <ScrollToTop />

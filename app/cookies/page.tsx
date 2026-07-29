@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { PageHero } from "@/components/shared/PageHero"
 
 export const metadata: Metadata = {
   title: "Cookie Policy | Property 9ja",
@@ -9,12 +10,7 @@ export const metadata: Metadata = {
 export default function CookiesPage() {
   return (
     <div className="min-h-[calc(100vh-4rem)]">
-      <section className="bg-brand-navy text-white py-16 md:py-24">
-        <div className="container mx-auto px-4 text-center max-w-3xl">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Cookie Policy</h1>
-          <p className="text-xl text-gray-300">Last updated: June 2024</p>
-        </div>
-      </section>
+      <PageHero title="Cookie Policy"><p className="text-lg text-gray-300">Last updated: June 2024</p></PageHero>
 
       <section className="py-12 md:py-16">
         <div className="container mx-auto px-4 max-w-3xl prose prose-lg">

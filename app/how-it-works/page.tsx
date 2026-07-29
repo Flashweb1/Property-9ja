@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { Search, CheckCircle, Shield, MessageSquare, Calendar, Star } from "lucide-react"
+import { PageHero } from "@/components/shared/PageHero"
 
 export const metadata: Metadata = {
   title: "How It Works | Property 9ja",
@@ -23,12 +24,7 @@ const agentSteps = [
 export default function HowItWorksPage() {
   return (
     <div className="min-h-[calc(100vh-4rem)]">
-      <section className="bg-brand-navy text-white py-16 md:py-24">
-        <div className="container mx-auto px-4 text-center max-w-3xl">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">How Property 9ja Works</h1>
-          <p className="text-xl text-gray-300">Nigeria's first verification-first property marketplace</p>
-        </div>
-      </section>
+      <PageHero title="How Property 9ja Works" subtitle="Nigeria's first verification-first property marketplace" />
 
       <section className="py-16">
         <div className="container mx-auto px-4 max-w-4xl">

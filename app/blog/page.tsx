@@ -5,6 +5,7 @@ import Link from "next/link"
 import { Calendar, Clock, ArrowRight } from "lucide-react"
 import { getBlogPosts } from "@/lib/api"
 import { BlogPost } from "@/types"
+import { PageHero } from "@/components/shared/PageHero"
 
 export default function BlogPage() {
   const [posts, setPosts] = useState<BlogPost[]>([])
@@ -15,12 +16,7 @@ export default function BlogPage() {
 
   return (
     <div className="min-h-[calc(100vh-4rem)]">
-      <section className="bg-brand-navy text-white py-16 md:py-24">
-        <div className="container mx-auto px-4 text-center max-w-3xl">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Property 9ja Blog</h1>
-          <p className="text-xl text-gray-300">Tips, guides, and insights for Nigerian property seekers and agents</p>
-        </div>
-      </section>
+      <PageHero title="Property 9ja Blog" subtitle="Tips, guides, and insights for Nigerian property seekers and agents" />
 
       <section className="py-16">
         <div className="container mx-auto px-4">

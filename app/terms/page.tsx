@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { PageHero } from "@/components/shared/PageHero"
 
 export const metadata: Metadata = {
   title: "Terms of Service | Property 9ja",
@@ -8,16 +9,10 @@ export const metadata: Metadata = {
 export default function TermsPage() {
   return (
     <div className="min-h-[calc(100vh-4rem)]">
-      <section className="bg-brand-navy text-white py-16 md:py-20">
-        <div className="container mx-auto px-4 text-center max-w-3xl">
-          <h1 className="text-4xl font-bold mb-4">Terms of Service</h1>
-          <p className="text-lg text-gray-300">Last updated: June 2024</p>
-        </div>
-      </section>
+      <PageHero title="Terms of Service"><p className="text-lg text-gray-300">Last updated: June 2024</p></PageHero>
 
       <section className="py-16">
-        <div className="container mx-auto px-4 max-w-3xl prose prose-gray">
-          <div className="space-y-8 text-gray-600 text-sm leading-relaxed">
+        <div className="container mx-auto px-4 max-w-3xl prose prose-lg">
             <div>
               <h2 className="text-xl font-bold text-gray-900 mb-3">1. Acceptance of Terms</h2>
               <p>By accessing and using Property 9ja ("the Platform"), you agree to be bound by these Terms of Service. If you do not agree, please do not use the Platform.</p>
@@ -54,7 +49,6 @@ export default function TermsPage() {
               <h2 className="text-xl font-bold text-gray-900 mb-3">9. Contact</h2>
               <p>For questions about these terms, contact us at <strong>support@verified.ng</strong>.</p>
             </div>
-          </div>
         </div>
       </section>
     </div>

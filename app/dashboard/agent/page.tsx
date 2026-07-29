@@ -25,10 +25,10 @@ export default function AgentDashboardPage() {
   }, [agentId])
 
   const stats = [
-    { icon: Building, label: "Active Listings", value: listings.length, color: "text-blue-600 bg-blue-100" },
-    { icon: Eye, label: "Total Views", value: "1,234", color: "text-green-600 bg-green-100" },
-    { icon: MessageSquare, label: "Inquiries", value: "28", color: "text-purple-600 bg-purple-100" },
-    { icon: Star, label: "Trust Score", value: "92%", color: "text-yellow-600 bg-yellow-100" },
+    { icon: Building, label: "Active Listings", value: listings.length, color: "text-brand-navy bg-brand-navy/10" },
+    { icon: Eye, label: "Total Views", value: "1,234", color: "text-brand-green bg-brand-green/10" },
+    { icon: MessageSquare, label: "Inquiries", value: "28", color: "text-brand-green-light bg-brand-green-light/10" },
+    { icon: Star, label: "Trust Score", value: "92%", color: "text-brand-gold bg-brand-gold/10" },
   ]
 
   return (

@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { CheckCircle, Shield, Building, Star, Users, MessageSquare, BarChart3 } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { PageHero } from "@/components/shared/PageHero"
 
 const plans = [
   {
@@ -51,12 +52,7 @@ const plans = [
 export default function PricingPage() {
   return (
     <div className="min-h-[calc(100vh-4rem)]">
-      <section className="bg-brand-navy text-white py-16 md:py-24">
-        <div className="container mx-auto px-4 text-center max-w-3xl">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Pricing Plans</h1>
-          <p className="text-xl text-gray-300">Start for free. Upgrade as you grow.</p>
-        </div>
-      </section>
+      <PageHero title="Pricing Plans" subtitle="Start for free. Upgrade as you grow." />
 
       <section className="py-16">
         <div className="container mx-auto px-4">

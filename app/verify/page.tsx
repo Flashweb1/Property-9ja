@@ -44,7 +44,7 @@ export default function VerifyPage() {
               <CheckCircle className="h-10 w-10 text-green-600" />
             </div>
           </div>
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">Verification Submitted</h1>
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">Verification Submitted</h2>
           <p className="text-gray-500 mb-6">
             Your documents have been submitted for review. Our team will verify them within 24-48 hours.
             You'll receive a notification once the verification is complete.

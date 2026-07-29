@@ -1,13 +1,15 @@
 "use client"
 
+"use client"
+
 import Link from "next/link"
 import Image from "next/image"
-import { Shield, Search, CheckCircle, Users, Building, Star } from "lucide-react"
+import { Shield, Search, CheckCircle, Users, Building, Star, Home, Sparkles } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { SearchBar } from "@/components/search/SearchBar"
 import { PropertyCard } from "@/components/property/PropertyCard"
 import { VerificationBadge } from "@/components/shared/VerificationBadge"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Property } from "@/types"
 import { getFeaturedProperties } from "@/lib/api"
 
@@ -35,16 +37,25 @@ const steps = [
 
 export default function LandingPage() {
   const [featuredProperties, setFeaturedProperties] = useState<Property[]>([])
+  const heroRef = useRef<HTMLDivElement>(null)
+  const [scrollY, setScrollY] = useState(0)
 
   useEffect(() => {
     getFeaturedProperties().then(setFeaturedProperties)
   }, [])
+
+  useEffect(() => {
+    const onScroll = () => setScrollY(window.scrollY)
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [])
+
   return (
     <div>
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-brand-navy">
-        {/* Background Image */}
-        <div className="absolute inset-0">
+      <section ref={heroRef} className="relative overflow-hidden bg-brand-navy">
+        {/* Parallax Background */}
+        <div className="absolute inset-0" style={{ transform: `translateY(${scrollY * 0.3}px)` }}>
           <Image
             src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&h=1080&fit=crop"
             alt=""
@@ -55,11 +66,12 @@ export default function LandingPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-brand-navy/85 via-brand-navy/70 to-brand-navy" />
         </div>
 
-        {/* Decorative floating shapes */}
+        {/* Decorative floating property icons */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-20 left-[15%] h-32 w-32 rounded-full border border-brand-green/10 animate-float" />
-          <div className="absolute bottom-40 right-[20%] h-24 w-24 rounded-full border border-brand-green/5 animate-float-delayed" />
-          <div className="absolute top-60 right-[10%] h-16 w-16 rounded-full bg-brand-green/[0.03] animate-float" style={{ animationDelay: "3s" }} />
+          <Building className="absolute top-16 left-[10%] h-8 w-8 text-brand-green/[0.06] animate-float" />
+          <Home className="absolute bottom-48 right-[15%] h-10 w-10 text-brand-green/[0.05] animate-float-delayed" />
+          <Star className="absolute top-40 right-[25%] h-6 w-6 text-brand-gold/[0.06] animate-float" style={{ animationDelay: "3s" }} />
+          <Search className="absolute bottom-32 left-[20%] h-7 w-7 text-brand-green/[0.04] animate-float-delayed" style={{ animationDelay: "1.5s" }} />
         </div>
 
         {/* Logo Watermark */}
@@ -71,16 +83,16 @@ export default function LandingPage() {
           <div className="max-w-3xl mx-auto text-center">
             {/* Badge */}
             <div className="animate-fade-in-up">
-              <div className="inline-flex items-center gap-2 rounded-full bg-brand-green/15 border border-brand-green/30 px-4 py-1.5 mb-6 animate-glow-pulse">
+              <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-brand-gold/20 to-brand-green/20 border border-brand-gold/30 px-4 py-1.5 mb-6 animate-glow-pulse">
                 <Image src="/images/Logo Icon Property9ja.png" alt="" width={16} height={16} className="w-4 h-4" />
-                <span className="text-sm font-medium text-brand-green-light">Nigeria's #1 Property Marketplace</span>
+                <span className="text-sm font-medium text-brand-gold">Nigeria's #1 Property Marketplace</span>
               </div>
             </div>
 
             {/* Headline */}
             <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6 text-white animate-fade-in-up animation-delay-150">
-              Find Your Perfect Home in{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-brand-green-light to-green-200 bg-[length:200%_auto] animate-shimmer drop-shadow-lg">
+              Your Trusted Journey to the Perfect Home in{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-gold via-brand-green-light to-emerald-300 bg-[length:200%_auto] animate-shimmer drop-shadow-lg">
                 Nigeria
               </span>
             </h1>
@@ -121,14 +133,14 @@ export default function LandingPage() {
           </div>
         </div>
 
-        {/* Stats Bar */}
-        <div className="relative z-10 border-t border-white/10">
+        {/* Stats Bar — always visible in hero */}
+        <div className="relative z-10 border-t border-white/10 bg-brand-navy/80 backdrop-blur-sm">
           <div className="container mx-auto px-4 py-6 md:py-8">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
               {stats.map((stat, i) => (
                 <div key={stat.label} className="text-center animate-fade-in-up" style={{ animationDelay: `${1000 + i * 150}ms` }}>
                   <div className="flex justify-center mb-1">
-                    <stat.icon className="h-5 w-5 text-brand-green-light" />
+                    <stat.icon className="h-5 w-5 text-brand-gold" />
                   </div>
                   <div className="text-xl md:text-2xl font-bold text-white">{stat.value}</div>
                   <div className="text-xs md:text-sm text-white/50 mt-0.5">{stat.label}</div>

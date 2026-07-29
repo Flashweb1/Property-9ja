@@ -26,13 +26,13 @@ export function TrustScore({ score, size = "md", showLabel = true, className }: 
   }
 
   const getColor = (s: number) => {
-    if (s >= 90) return "text-green-600"
+    if (s >= 90) return "text-[#D4AF37]"
     if (s >= 70) return "text-yellow-600"
     return "text-red-600"
   }
 
   const getStrokeColor = (s: number) => {
-    if (s >= 90) return "stroke-green-500"
+    if (s >= 90) return "stroke-[#D4AF37]"
     if (s >= 70) return "stroke-yellow-500"
     return "stroke-red-500"
   }
@@ -60,10 +60,7 @@ export function TrustScore({ score, size = "md", showLabel = true, className }: 
         </span>
       </div>
       {showLabel && (
-        <div className="flex flex-col">
-          <span className={cn("text-xs font-semibold", getColor(score))}>{score}% Trust Score</span>
-          <span className="text-[10px] text-gray-500">Based on verification & reviews</span>
-        </div>
+        <span className="text-xs text-gray-500">Based on verification & reviews</span>
       )}
     </div>
   )

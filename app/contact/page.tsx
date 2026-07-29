@@ -3,6 +3,7 @@
 import { useState, useEffect, Suspense } from "react"
 import { useSearchParams } from "next/navigation"
 import { Mail, Phone, MapPin, Clock } from "lucide-react"
+import { PageHero } from "@/components/shared/PageHero"
 
 const contactMethods = [
   { icon: Mail, title: "Email", detail: "support@verified.ng", sub: "We respond within 24 hours" },
@@ -30,12 +31,7 @@ function ContactForm() {
 
   return (
     <div className="min-h-[calc(100vh-4rem)]">
-      <section className="bg-brand-navy text-white py-16 md:py-24">
-        <div className="container mx-auto px-4 text-center max-w-3xl">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Contact Us</h1>
-          <p className="text-xl text-gray-300">We&apos;re here to help with any questions or concerns</p>
-        </div>
-      </section>
+      <PageHero title="Contact Us" subtitle="We're here to help with any questions or concerns" />
 
       <section className="py-16">
         <div className="container mx-auto px-4">

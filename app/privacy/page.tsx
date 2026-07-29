@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { PageHero } from "@/components/shared/PageHero"
 
 export const metadata: Metadata = {
   title: "Privacy Policy | Property 9ja",
@@ -8,15 +9,10 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <div className="min-h-[calc(100vh-4rem)]">
-      <section className="bg-brand-navy text-white py-16 md:py-20">
-        <div className="container mx-auto px-4 text-center max-w-3xl">
-          <h1 className="text-4xl font-bold mb-4">Privacy Policy</h1>
-          <p className="text-lg text-gray-300">Last updated: June 2024</p>
-        </div>
-      </section>
+      <PageHero title="Privacy Policy"><p className="text-lg text-gray-300">Last updated: June 2024</p></PageHero>
 
       <section className="py-16">
-        <div className="container mx-auto px-4 max-w-3xl text-gray-600 text-sm leading-relaxed space-y-8">
+        <div className="container mx-auto px-4 max-w-3xl prose prose-lg">
           <div>
             <h2 className="text-xl font-bold text-gray-900 mb-3">1. Information We Collect</h2>
             <p>We collect information you provide directly: name, email, phone number, profile photos, and verification documents. We also collect usage data: pages visited, searches made, properties viewed, and interactions with other users.</p>

@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { Shield, CheckCircle, Search, FileCheck, Camera, Users, Building, Star } from "lucide-react"
+import { PageHero } from "@/components/shared/PageHero"
 
 const steps = [
   { icon: FileCheck, title: "Agent Identity Verification", desc: "Every agent submits government-issued ID and proof of address. We verify each document before they can list." },
@@ -11,22 +12,11 @@ const steps = [
 export default function TrustAndSafetyPage() {
   return (
     <div className="min-h-[calc(100vh-4rem)]">
-      <section className="bg-brand-navy text-white py-16 md:py-24">
-        <div className="container mx-auto px-4 text-center max-w-3xl">
-          <div className="flex justify-center mb-4">
-            <div className="relative h-16 w-16">
-              <Image
-                src="/images/Logo Icon Property9ja.png"
-                alt="Property 9ja"
-                fill
-                className="object-contain"
-              />
-            </div>
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Trust & Safety</h1>
-          <p className="text-xl text-gray-300">How Property 9ja eliminates real estate fraud in Nigeria</p>
-        </div>
-      </section>
+      <PageHero
+        icon={<div className="relative h-16 w-16"><Image src="/images/Logo Icon Property9ja.png" alt="Property 9ja" fill className="object-contain" /></div>}
+        title="Trust & Safety"
+        subtitle="How Property 9ja eliminates real estate fraud in Nigeria"
+      />
 
       <section className="py-16">
         <div className="container mx-auto px-4">

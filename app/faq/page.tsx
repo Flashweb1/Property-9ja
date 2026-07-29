@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from "react"
 import { ChevronDown, HelpCircle, MessageCircle, X, Send, Bot, Loader2 } from "lucide-react"
 import { askChatbot } from "@/lib/api"
+import { PageHero } from "@/components/shared/PageHero"
 
 const faqs = [
   { q: "What makes Property 9ja different from other property sites?", a: "Property 9ja is Nigeria's first verification-first marketplace. Every property listing is physically inspected, every agent's identity is verified, and the total move-in cost is displayed upfront. We have zero tolerance for fake listings or hidden fees." },
@@ -46,17 +47,11 @@ export default function FAQPage() {
 
   return (
     <div className="min-h-[calc(100vh-4rem)]">
-      <section className="bg-brand-navy text-white py-16 md:py-24">
-        <div className="container mx-auto px-4 text-center max-w-3xl">
-          <div className="flex justify-center mb-4">
-            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-green">
-              <HelpCircle className="h-8 w-8 text-white" />
-            </div>
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Frequently Asked Questions</h1>
-          <p className="text-xl text-gray-300">Everything you need to know about Property 9ja</p>
-        </div>
-      </section>
+      <PageHero
+        icon={<div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-green"><HelpCircle className="h-8 w-8 text-white" /></div>}
+        title="Frequently Asked Questions"
+        subtitle="Everything you need to know about Property 9ja"
+      />
 
       <section className="py-16">
         <div className="container mx-auto px-4 max-w-3xl">
