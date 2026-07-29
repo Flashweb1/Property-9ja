@@ -6,7 +6,6 @@ import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { Mail, Lock, User, Phone, Eye, EyeOff } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { createClient } from "@/lib/supabaseBrowser"
 
 export default function RegisterPage() {
   const router = useRouter()
@@ -39,15 +38,26 @@ export default function RegisterPage() {
     const password = passwordRef.current?.value || ""
 
     try {
-      const supabase = createClient()
-      const { error: signUpError } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          data: { name, role, phone: phoneRef.current?.value || "" },
-        },
+      const res = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+          password,
+          options: { data: { name, role, phone: phoneRef.current?.value || "" } },
+        }),
       })
-      if (signUpError) throw signUpError
+
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || "Registration failed")
+
+      const { createClient } = await import("@/lib/supabaseBrowser")
+      const supabase = createClient()
+      await supabase.auth.setSession({
+        access_token: data.access_token,
+        refresh_token: data.refresh_token,
+      })
+
       router.push("/search?welcome=1")
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : "Registration failed")

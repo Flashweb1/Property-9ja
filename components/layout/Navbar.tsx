@@ -7,7 +7,7 @@ import { Shield, Search, MessageSquare, Heart, Menu, X, User, LogOut, Home, Buil
 import { Button } from "@/components/ui/button"
 import { useAppStore } from "@/lib/store"
 import { useAuth } from "@/hooks/useAuth"
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils" // Assuming useAuth exposes a logout function
 
 export function Navbar() {
   const pathname = usePathname()
@@ -233,7 +233,10 @@ export function Navbar() {
                   <Settings className="h-5 w-5" />
                   Settings
                 </Link>
-                <button className="flex w-full items-center gap-3 rounded-lg px-3 py-3 text-sm font-medium text-red-600 hover:bg-red-50">
+                <button
+                  onClick={() => { /* Call your logout function here */ }}
+                  className="flex w-full items-center gap-3 rounded-lg px-3 py-3 text-sm font-medium text-red-600 hover:bg-red-50"
+                >
                   <LogOut className="h-5 w-5" />
                   Log Out
                 </button>

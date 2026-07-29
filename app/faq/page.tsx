@@ -40,6 +40,9 @@ export default function FAQPage() {
     try {
       const reply = await askChatbot(msg)
       setChatMessages((prev) => [...prev, { role: "bot", text: reply || "Sorry, I couldn't process that. Please try again." }])
+    } catch (error) {
+      console.error("Chatbot error:", error);
+      setChatMessages((prev) => [...prev, { role: "bot", text: "I'm having trouble connecting right now. Please try again later." }])
     } finally {
       setChatLoading(false)
     }
