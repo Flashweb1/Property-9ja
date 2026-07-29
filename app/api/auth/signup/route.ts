@@ -15,11 +15,14 @@ export async function POST(req: Request) {
     const { data, error } = await supabase.auth.signUp({ email, password, options })
 
     if (error) {
-      return NextResponse.json({ error: error.message }, { status: 400 })
+      console.error("[signup] Supabase error:", JSON.stringify({ message: error.message, status: error.status, code: error.code, name: error.name }, null, 2))
+      return NextResponse.json({ error: error.message, code: error.code, status: error.status }, { status: 400 })
     }
 
+    console.log("[signup] Success:", data.user?.id)
     return NextResponse.json(data)
   } catch (err) {
+    console.error("[signup] Unhandled exception:", err)
     return NextResponse.json(
       { error: err instanceof Error ? err.message : "Internal server error" },
       { status: 500 },

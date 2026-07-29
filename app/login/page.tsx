@@ -1,10 +1,10 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
-import { Mail, Lock, Eye, EyeOff } from "lucide-react"
+import { Mail, Lock, Eye, EyeOff, CheckCircle2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useAuth } from "@/hooks/useAuth"
 
@@ -15,6 +15,11 @@ export default function LoginPage() {
   const [password, setPassword] = useState("")
   const [showPassword, setShowPassword] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [registered, setRegistered] = useState(false)
+
+  useEffect(() => {
+    setRegistered(window.location.search.includes("registered=1"))
+  }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -53,6 +58,13 @@ export default function LoginPage() {
           <h1 className="text-2xl font-bold text-gray-900">Welcome back</h1>
           <p className="text-gray-500 mt-2">Sign in to your Property 9ja account</p>
         </div>
+
+        {registered && (
+          <div className="mb-4 rounded-lg bg-green-50 border border-green-200 p-3 flex items-start gap-2 text-sm text-green-700">
+            <CheckCircle2 className="h-4 w-4 mt-0.5 shrink-0" />
+            <span>Account created successfully! Sign in to continue.</span>
+          </div>
+        )}
 
         <form onSubmit={handleSubmit} className="bg-white rounded-xl border p-6 space-y-5">
           <div>

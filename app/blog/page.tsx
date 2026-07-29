@@ -1,18 +1,12 @@
-"use client"
-
-import { useEffect, useState } from "react"
 import Link from "next/link"
 import { Calendar, Clock, ArrowRight } from "lucide-react"
 import { getBlogPosts } from "@/lib/api"
 import { BlogPost } from "@/types"
 import { PageHero } from "@/components/shared/PageHero"
 
-export default function BlogPage() {
-  const [posts, setPosts] = useState<BlogPost[]>([])
-
-  useEffect(() => {
-    getBlogPosts().then(setPosts)
-  }, [])
+export default async function BlogPage() {
+  // Data is now fetched on the server when the page is built/requested.
+  const posts: BlogPost[] = await getBlogPosts()
 
   return (
     <div className="min-h-[calc(100vh-4rem)]">

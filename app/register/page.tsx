@@ -51,14 +51,21 @@ export default function RegisterPage() {
       const data = await res.json()
       if (!res.ok) throw new Error(data.error || "Registration failed")
 
-      const { createClient } = await import("@/lib/supabaseBrowser")
-      const supabase = createClient()
-      await supabase.auth.setSession({
-        access_token: data.access_token,
-        refresh_token: data.refresh_token,
-      })
-
-      router.push("/search?welcome=1")
+      if (data.session?.access_token) {
+        try {
+          const { createClient } = await import("@/lib/supabaseBrowser")
+          const supabase = createClient()
+          await supabase.auth.setSession({
+            access_token: data.session.access_token,
+            refresh_token: data.session.refresh_token,
+          })
+          router.push("/search?welcome=1")
+        } catch {
+          router.push("/login?registered=1")
+        }
+      } else {
+        router.push("/login?registered=1")
+      }
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : "Registration failed")
     } finally {
