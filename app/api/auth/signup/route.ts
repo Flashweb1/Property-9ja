@@ -1,36 +1,24 @@
+import { createClient } from "@supabase/supabase-js"
 import { NextResponse } from "next/server"
+
+export const dynamic = "force-dynamic"
 
 export async function POST(req: Request) {
   try {
     const { email, password, options } = await req.json()
 
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_SUPABASE_URL}/auth/v1/signup`,
-      {
-        method: "POST",
-        headers: {
-          apikey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          password,
-          data: options?.data || {},
-          gotrue_meta_security: {},
-        }),
-      },
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     )
 
-    const body = await res.json()
+    const { data, error } = await supabase.auth.signUp({ email, password, options })
 
-    if (!res.ok) {
-      return NextResponse.json(
-        { error: body.msg || body.error_description || body.error || `Signup failed (${res.status})` },
-        { status: res.status },
-      )
+    if (error) {
+      return NextResponse.json({ error: error.message }, { status: 400 })
     }
 
-    return NextResponse.json(body)
+    return NextResponse.json(data)
   } catch (err) {
     return NextResponse.json(
       { error: err instanceof Error ? err.message : "Internal server error" },
